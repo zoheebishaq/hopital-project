@@ -11,5 +11,5 @@ public class RendezVousDTO {
     private Date dateRendezVous;
     private long medecinId;
     private long patientId;
-    private long consultId;
+    private long consultationId;
 }

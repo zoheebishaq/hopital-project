@@ -13,6 +13,7 @@ import java.util.Objects;
 public class RendezVous {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
     private long id;
+
     private Date dateRendezVous;
     @ManyToOne
     private Medecin medecin;
