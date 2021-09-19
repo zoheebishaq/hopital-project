@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: html_head" />
+
+
+<body id="body-pd">
+<div th:replace="fragments :: html_sidebar"/>
+<!--Container Main start-->
+<div class="height-100 ">
+    <table class="table table-hover">
+        <thead>
+        <tr >
+            <th  scope="col">Nom</th>
+            <th  scope="col">Email</th>
+            <th  scope="col">Specialité</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m: ${medecin}">
+            <td th:text="${m.nom}"></td>
+            <td th:text="${m.email}"></td>
+            <td th:text="${m.specialite}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
