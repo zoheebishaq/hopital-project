@@ -4,6 +4,7 @@ import fr.zoheeb.hopital.dao.ConsultationRepository;
 import fr.zoheeb.hopital.dao.MedecinRepository;
 import fr.zoheeb.hopital.dao.PatientRepository;
 import fr.zoheeb.hopital.dao.RendezVousRepository;
+import fr.zoheeb.hopital.dto.ConsultationDTO;
 import fr.zoheeb.hopital.dto.MedecinDTO;
 import fr.zoheeb.hopital.dto.PatientDTO;
 import fr.zoheeb.hopital.dto.RendezVousDTO;
@@ -41,12 +42,10 @@ public class HopitalService {
     public Patient getPatient(Long id){
         return patientRepository.findById(id).orElse(new Patient());
     }
-
     public void deletePatients(Long id){
         patientRepository.deleteById(id);
     }
-    public void savePatients(PatientDTO patientDTO)
-    {
+    public void savePatients(PatientDTO patientDTO) {
         Patient patientDB = patientRepository.findById(patientDTO.getId()).orElse(new Patient());
         patientDB.setNom(patientDTO.getNom());
         patientDB.setEmail(patientDB.getEmail());
@@ -54,19 +53,16 @@ public class HopitalService {
     }
 
     //Medecin----------------------------------------------------------------------------
-
     public List<Medecin> getMedecins(){
         return Lists.newArrayList(medecinRepository.findAll());
     }
     public Medecin getMedecin(Long id){
         return medecinRepository.findById(id).orElse(new Medecin());
     }
-
     public void deleteMedecins(Long id){
         medecinRepository.deleteById(id);
     }
-    public void saveMedecins(MedecinDTO medecinDTO)
-    {
+    public void saveMedecins(MedecinDTO medecinDTO) {
         Medecin medecinDB = medecinRepository.findById(medecinDTO.getId()).orElse(new Medecin());
         medecinDB.setNom(medecinDTO.getNom());
         medecinDB.setEmail(medecinDTO.getEmail());
@@ -75,7 +71,6 @@ public class HopitalService {
     }
 
     //Rendez-vous---------------------------------------------------------------------------
-
     public List<RendezVous> getRendezVousList(){
         return Lists.newArrayList(rendezVousRepository.findAll());
     }
@@ -95,5 +90,22 @@ public class HopitalService {
         Consultation consultationDB = consultationRepository.findById(rendezVousDTO.getConsultationId()).orElse(new Consultation());
         rendezVousDB.setConsultation(consultationDB);
         rendezVousRepository.save(rendezVousDB);
+    }
+
+    //Consultation-----------------------------------------------------
+    public List<Consultation> getConsulataions(){
+        return Lists.newArrayList(consultationRepository.findAll());
+    }
+    public Consultation getConsulataion(Long id){ return consultationRepository.findById(id).orElse(new Consultation()); }
+    public void deleteConsultations(long id){
+        consultationRepository.deleteById(id);
+    }
+    public void saveConsultation(ConsultationDTO consultationDTO){
+        Consultation consultationDB = consultationRepository.findById(consultationDTO.getId()).orElse(new Consultation());
+        consultationDB.setDateConsultation(consultationDTO.getDateConsultation());
+        consultationDB.setRapportConsultation(consultationDTO.getRapportConsultation());
+        RendezVous rendezVousDB = rendezVousRepository.findById(consultationDTO.getRendezVousId()).orElse(new RendezVous());
+        consultationDB.setRendezVous(rendezVousDB);
+        consultationRepository.save(consultationDB);
     }
 }
