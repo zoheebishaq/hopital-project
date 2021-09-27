@@ -7,7 +7,11 @@
 <body id="body-pd">
 <div th:replace="fragments :: html_sidebar"/>
 <!--Container Main start-->
-<div class="height-100 ">
+<div class="container cheight-100 ">
+    <a href="" th:href="@{'medecin/form'}" class="btn btn-outline-secondary">
+        <i> Ajouter Médecin</i> </a>&nbsp;&nbsp;
+    <br>
+    <br>
     <table class="table table-hover">
         <thead>
         <tr >
@@ -18,12 +22,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="m: ${medecin}">
-            <td th:text="${m.nom}"></td>
+        <tr th:each="m: ${medecinList}">
+            <td th:text="'Dr '+${m.nom}"></td>
             <td th:text="${m.email}"></td>
             <td th:text="${m.specialite}"></td>
+            <td><a class="btn btn-warning" th:href="@{'/medecin/'+${m.id}}" href="">Modifier</a>
+                <a class="btn btn-danger"  th:href="@{'/medecin/delete/'+${m.id}}" href="" >Supprimer</a>
+            </td>
         </tr>
-
         </tbody>
     </table>
 </div>

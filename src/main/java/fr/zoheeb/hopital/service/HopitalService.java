@@ -66,7 +66,7 @@ public class HopitalService {
         Medecin medecinDB = medecinRepository.findById(medecinDTO.getId()).orElse(new Medecin());
         medecinDB.setNom(medecinDTO.getNom());
         medecinDB.setEmail(medecinDTO.getEmail());
-        medecinDB.setSpecialite(medecinDTO.getEmail());
+        medecinDB.setSpecialite(medecinDTO.getSpecialite());
         medecinRepository.save(medecinDB);
     }
 
