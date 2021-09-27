@@ -1,7 +1,9 @@
 package fr.zoheeb.hopital.controller;
 
 import fr.zoheeb.hopital.dto.MedecinDTO;
+import fr.zoheeb.hopital.dto.PatientDTO;
 import fr.zoheeb.hopital.model.Medecin;
+import fr.zoheeb.hopital.model.Patient;
 import fr.zoheeb.hopital.service.HopitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,5 +66,40 @@ public class HopitalController {
         hopitalService.deleteMedecins(id);
         return "redirect:/medecin";
     }
+
+    //Patient-----------------------------------------------------------------------------------------------------------
+
+    @GetMapping("/patient")
+    public String getPatients(Model model) {
+        model.addAttribute("patientList", hopitalService.getPatients());
+        return "patientList";
+    }
+
+    @PostMapping("/patient")
+    public String postPatient(@ModelAttribute(name = "patient") PatientDTO patientDTO) {
+        hopitalService.savePatients(patientDTO);
+        return "redirect:/patient";
+    }
+
+    @GetMapping("patient/form")
+    public String addPatient(Model model) {
+        model.addAttribute("patientForm",new PatientDTO());
+        return "patientForm";
+    }
+
+    @GetMapping("/patient/{id}")
+    public String getPatient(Model model, @PathVariable(name = "id") Long id) {
+        Patient patient = hopitalService.getPatient(id);
+        PatientDTO patientDTO = new PatientDTO();
+        patientDTO.setId(patient.getId());
+        patientDTO.setNom(patient.getNom());
+        patientDTO.setEmail(patient.getEmail());
+
+        model.addAttribute("patientForm", patientDTO);
+        return "patientForm";
+    }
+
+
+
 
 }
