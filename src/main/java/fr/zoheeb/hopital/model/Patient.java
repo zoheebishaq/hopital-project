@@ -15,6 +15,7 @@ public class Patient {
     private long id;
     private String nom;
     private String email;
+    private String numTel;
     @OneToMany(mappedBy = "patient")
     private Collection<RendezVous> rendezVous;
 
@@ -23,12 +24,12 @@ public class Patient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return id == patient.id && nom.equals(patient.nom) && email.equals(patient.email);
+        return id == patient.id && Objects.equals(nom, patient.nom) && Objects.equals(email, patient.email) && Objects.equals(numTel, patient.numTel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nom, email);
+        return Objects.hash(id, nom, email, numTel);
     }
 
     @Override
@@ -37,6 +38,7 @@ public class Patient {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
+                ", numTel='" + numTel + '\'' +
                 '}';
     }
 }

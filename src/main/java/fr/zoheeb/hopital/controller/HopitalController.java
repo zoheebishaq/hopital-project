@@ -2,6 +2,7 @@ package fr.zoheeb.hopital.controller;
 
 import fr.zoheeb.hopital.dto.MedecinDTO;
 import fr.zoheeb.hopital.dto.PatientDTO;
+import fr.zoheeb.hopital.dto.RendezVousDTO;
 import fr.zoheeb.hopital.model.Medecin;
 import fr.zoheeb.hopital.model.Patient;
 import fr.zoheeb.hopital.service.HopitalService;
@@ -94,11 +95,32 @@ public class HopitalController {
         patientDTO.setId(patient.getId());
         patientDTO.setNom(patient.getNom());
         patientDTO.setEmail(patient.getEmail());
+        patientDTO.setNumTel(patient.getNumTel());
 
         model.addAttribute("patientForm", patientDTO);
         return "patientForm";
     }
 
+
+    @GetMapping("/patient/delete/{id}")
+    public String deletePatient(Model model, @PathVariable(name ="id") Long id) {
+        hopitalService.deletePatients(id);
+        return "redirect:/patient";
+    }
+
+    //RendezVous--------------------------------------------------------------------------------------------------------
+
+    @GetMapping("/rendezVous")
+    public String getRdvs(Model model) {
+        model.addAttribute("rdvList", hopitalService.getRendezVousList());
+        return "rdvList";
+    }
+
+    @PostMapping("/rendezVous")
+    public String postRdv(@ModelAttribute(name = "rendezVous") RendezVousDTO rendezVousDTO) {
+        hopitalService.saveRendezVous(rendezVousDTO);
+        return "redirect:/rendezVous";
+    }
 
 
 

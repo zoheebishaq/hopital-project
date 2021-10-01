@@ -9,5 +9,6 @@ public class PatientDTO {
     private long id;
     private String nom;
     private String email;
+    private String numTel;
 
 }

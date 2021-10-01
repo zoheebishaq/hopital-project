@@ -9,8 +9,8 @@
 <!--Container Main start-->
 <div class="container">
     <div class="height-100">
-        <a href=""  th:href="@{'medecin/form'}" class=" btn btn-outline-secondary">
-            <i> Ajouter Médecin</i> </a>&nbsp;&nbsp;
+        <a href="" th:href="@{'patient/form'}" class="btn btn-outline-secondary">
+            <i> Ajouter Patient</i> </a>&nbsp;&nbsp;
         <br>
         <br>
         <table class="table table-hover">
@@ -18,17 +18,17 @@
             <tr>
                 <th scope="col">Nom</th>
                 <th scope="col">Email</th>
-                <th scope="col">Specialité</th>
+                <th scope="col">Numéro de telephone</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="m: ${medecinList}">
-                <td th:text="'Dr '+${m.nom}"></td>
-                <td th:text="${m.email}"></td>
-                <td th:text="${m.specialite}"></td>
-                <td><a class="btn btn-warning" th:href="@{'/medecin/'+${m.id}}" href="">Modifier</a>
-                    <a class="btn btn-danger" th:href="@{'/medecin/delete/'+${m.id}}" href="">Supprimer</a>
+            <tr th:each="p: ${patientList}">
+                <td th:text="${p.nom}"></td>
+                <td th:text="${p.email}"></td>
+                <td th:text="${p.numTel}"></td>
+                <td><a class="btn btn-warning" th:href="@{'/patient/'+${p.id}}" href="">Modifier</a>
+                    <a class="btn btn-danger" th:href="@{'/patient/delete/'+${p.id}}" href="">Supprimer</a>
                 </td>
             </tr>
             </tbody>

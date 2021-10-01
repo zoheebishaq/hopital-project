@@ -14,7 +14,10 @@ public class Consultation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+    @Temporal(TemporalType.DATE)
     private Date dateConsultation;
+    @Temporal(TemporalType.TIME)
+    private Date heureConsultation;
     private String rapportConsultation;
     @OneToOne(mappedBy = "consultation")
     private RendezVous rendezVous;
@@ -24,12 +27,12 @@ public class Consultation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return id == that.id && dateConsultation.equals(that.dateConsultation) && rapportConsultation.equals(that.rapportConsultation);
+        return id == that.id && dateConsultation.equals(that.dateConsultation) && heureConsultation.equals(that.heureConsultation) && rapportConsultation.equals(that.rapportConsultation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dateConsultation, rapportConsultation);
+        return Objects.hash(id, dateConsultation, heureConsultation, rapportConsultation);
     }
 
     @Override
@@ -37,6 +40,7 @@ public class Consultation {
         return "Consultation{" +
                 "id=" + id +
                 ", dateConsultation=" + dateConsultation +
+                ", heureConsultation=" + heureConsultation +
                 ", rapportConsultation='" + rapportConsultation + '\'' +
                 '}';
     }

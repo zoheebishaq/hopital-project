@@ -48,7 +48,8 @@ public class HopitalService {
     public void savePatients(PatientDTO patientDTO) {
         Patient patientDB = patientRepository.findById(patientDTO.getId()).orElse(new Patient());
         patientDB.setNom(patientDTO.getNom());
-        patientDB.setEmail(patientDB.getEmail());
+        patientDB.setEmail(patientDTO.getEmail());
+        patientDB.setNumTel(patientDTO.getNumTel());
         patientRepository.save(patientDB);
     }
 
@@ -83,6 +84,7 @@ public class HopitalService {
     public void saveRendezVous(RendezVousDTO rendezVousDTO){
         RendezVous rendezVousDB = rendezVousRepository.findById(rendezVousDTO.getId()).orElse(new RendezVous());
         rendezVousDB.setDateRendezVous(rendezVousDTO.getDateRendezVous());
+        rendezVousDB.setHeureRendezVous(rendezVousDTO.getHeureRendezVous());
         Patient patientDB = patientRepository.findById(rendezVousDTO.getPatientId()).orElse(new Patient());
         rendezVousDB.setPatient(patientDB);
         Medecin medecinDB = medecinRepository.findById(rendezVousDTO.getMedecinId()).orElse(new Medecin());
@@ -103,6 +105,7 @@ public class HopitalService {
     public void saveConsultation(ConsultationDTO consultationDTO){
         Consultation consultationDB = consultationRepository.findById(consultationDTO.getId()).orElse(new Consultation());
         consultationDB.setDateConsultation(consultationDTO.getDateConsultation());
+        consultationDB.setHeureConsultation(consultationDTO.getHeureConsultation());
         consultationDB.setRapportConsultation(consultationDTO.getRapportConsultation());
         RendezVous rendezVousDB = rendezVousRepository.findById(consultationDTO.getRendezVousId()).orElse(new RendezVous());
         consultationDB.setRendezVous(rendezVousDB);

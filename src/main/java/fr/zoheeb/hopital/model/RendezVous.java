@@ -13,8 +13,10 @@ import java.util.Objects;
 public class RendezVous {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
     private long id;
-
+    @Temporal(TemporalType.DATE)
     private Date dateRendezVous;
+    @Temporal(TemporalType.TIME)
+    private Date heureRendezVous;
     @ManyToOne
     private Medecin medecin;
     @ManyToOne
@@ -27,12 +29,12 @@ public class RendezVous {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RendezVous that = (RendezVous) o;
-        return id == that.id && dateRendezVous.equals(that.dateRendezVous);
+        return id == that.id && dateRendezVous.equals(that.dateRendezVous) && heureRendezVous.equals(that.heureRendezVous);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dateRendezVous);
+        return Objects.hash(id, dateRendezVous, heureRendezVous);
     }
 
     @Override
@@ -40,6 +42,7 @@ public class RendezVous {
         return "RendezVous{" +
                 "id=" + id +
                 ", dateRendezVous=" + dateRendezVous +
+                ", heureRendezVous=" + heureRendezVous +
                 '}';
     }
 }

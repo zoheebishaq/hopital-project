@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: html_head"/>
+
+
+<body id="body-pd">
+<div th:replace="fragments :: html_sidebar"/>
+<!--Container Main start-->
+<div class="container">
+    <div class="height-100">
+        <a href="" th:href="@{'patient/form'}" class="btn btn-outline-secondary">
+            <i> Ajouter RDV</i> </a>&nbsp;&nbsp;
+        <br>
+        <br>
+        <div class="accordion" id="accordionExample1">
+            <div class="accordion-item" th:each="rdv: ${rdvList}">
+                <h2 class="accordion-header" id="headingOne">
+                    <button th:text="'RDV '+${rdv.dateRendezVous}" class="accordion-button" type="button" data-bs-toggle="collapse"
+                            th:data-bs-target="'#collapse'+${rdv.id}" aria-expanded="false" aria-controls="collapseOne">
+
+                    </button>
+                </h2>
+<!--                <div th:id="'collapse'+${rdv.id}" class="accordion-collapse collapse " aria-labelledby="headingOne"-->
+<!--                     data-bs-parent="#accordionExample">-->
+<!--                    <div class="accordion-body">-->
+<!--                        <div class="accordion" id="accordionExample">-->
+<!--                            <div class="accordion-item" th:each="p: ${rdv.dateRendezVous.hours}">-->
+<!--                                <h2 class="accordion-header" id="headingTwo">-->
+<!--                                    <button th:text="'Parcours '+${p.nom}+' du Golf '+${p.golf.nom}"-->
+<!--                                            class="accordion-button" type="button" data-bs-toggle="collapse"-->
+<!--                                            th:data-bs-target="'#collapse'+${p.id}" aria-expanded="false"-->
+<!--                                            aria-controls="collapseOne">-->
+<!--                                    </button>-->
+<!--                                </h2>-->
+<!--                                <div th:id="'collapse'+${p.id}" class="accordion-collapse collapse "-->
+<!--                                     aria-labelledby="headingTwo"-->
+<!--                                     data-bs-parent="#accordionExample">-->
+<!--                                    <div class="accordion-body">-->
+<!--                                        <table class="table table-hover">-->
+<!--                                            <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th scope="col">Num Trou</th>-->
+<!--                                                <th scope="col">Nom Trou</th>-->
+<!--                                                <th scope="col">Par</th>-->
+<!--                                                <th scope="col">Parcours</th>-->
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody>-->
+<!--                                            <tr th:each="t: ${p.trous}">-->
+<!--                                                <td th:text="${t.numTrou}"></td>-->
+<!--                                                <td th:text="${t.nom}"></td>-->
+<!--                                                &lt;!&ndash;                            <td th:text="${t.num_trou}"></td>&ndash;&gt;-->
+<!--                                                <td th:text="${t.par}"></td>-->
+<!--                                                <td th:text="${t.parcours.nom}"></td>-->
+
+
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -8,21 +8,21 @@
 <div th:replace="fragments :: html_sidebar"/>
 <!--Container Main start-->
 <div class="container height-100 ">
-    <h1 class="text-center mb-4">Ajout de Médecin</h1>
+    <h1 class="text-center mb-4">Ajout d'un patient</h1>
     <div class="row">
 
 
         <div class="col-sm-6  mx-auto border bg-white ">
             <br>
-            <form action="#" method="post"  enctype="multipart/form-data" th:action="@{/medecin}" th:object="${medecinForm}">
+            <form action="#" method="post"  enctype="multipart/form-data" th:action="@{/patient}" th:object="${patientForm}">
                 <input type="hidden" name="id" th:field="*{id}">
 
                 <br>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Nom Medecin :</label>
+                    <label for="exampleFormControlInput1" class="form-label">Nom Patient :</label>
                     <input type="text" th:field="*{nom}" class="form-control" name="login" required minlength="2"
                            id="exampleFormControlInput1"
-                           placeholder="Nom Medecin">
+                           placeholder="Nom Patient">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput2" class="form-label">Email :</label>
@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlSpecialite1">Specialite</label>
-                    <input type="text" class="form-control" th:field="*{specialite}" id="exampleFormControlSpecialite1" rows="3"></input>
+                    <label for="exampleFormControlSpecialite1">Numero de telephone :</label>
+                    <input type="text" class="form-control" th:field="*{numTel}" placeholder="Numero de telephone" id="exampleFormControlSpecialite1" rows="3"></input>
                 </div>
 
                 <br><br>
